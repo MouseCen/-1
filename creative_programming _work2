@@ -1,0 +1,43 @@
+float Am=200;
+float time=0;
+float timeA=0;
+void setup(){
+size(980,340);
+}
+
+void draw(){
+int p = 300;
+noStroke();
+fill(#009F4B);
+rect(20,20,300,300);
+fill(#EB2325);
+rect(40+p,20,300,300);
+fill(#FDD400);
+rect(60+2*p,20,300,300);
+
+
+stroke(#A51A1E);
+translate(20,20);
+for(float y=0;y<=300;y++){
+line(50+Am*noise(y/200,0.5*time),y,0,y);
+}
+
+stroke(#006DB8);
+translate(320,0);
+for(float x=0;x<=300;x++){
+line(x,50+Am*noise(x/200,time),x,0);
+}
+
+
+stroke(#64499D);
+translate(320,0);
+for(float x=0;x<=300;x++){
+  float y=x-20;
+  float dy=y+Am*noise(x/200,time,timeA);
+  float dyy=map(dy,-20,500,0,350);
+line(x,dyy,x,0);
+}
+
+time=time+0.005;
+timeA=timeA+0.005;
+}
